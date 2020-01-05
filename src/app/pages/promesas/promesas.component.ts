@@ -7,9 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromesasComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+
+    this.contarSegundos().then( 
+
+      ()=> console.log("termino con exito")
+
+    ).catch( 
+
+      (err) => console.log("error: ", err)
+
+    );
+  }
 
   ngOnInit() {
+  }
+
+  contarSegundos(): Promise<string>{
+    return new Promise( (resolve, reject) =>{
+      
+      let contador = 0;
+
+      let intervalo = setInterval( ()=>{
+        contador += 1;
+        console.log(contador);
+        
+
+        if (contador === 3) {
+          reject("Aca explico el error");
+          //hago que deje de contar el contador
+          clearInterval(intervalo);
+        }
+      }, 1000);
+    });
+  
   }
 
 }

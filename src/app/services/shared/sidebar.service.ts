@@ -21,6 +21,14 @@ export class SidebarService {
           url: '/graficas1'
         },
         {
+          titulo: 'Promesas', 
+          url: '/promesas'
+        },
+        {
+          titulo: 'Observables', 
+          url: '/observables'
+        },
+        {
           titulo: 'Settings', 
           url: '/settings'
         }
