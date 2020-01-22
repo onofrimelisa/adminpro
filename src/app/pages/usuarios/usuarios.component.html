@@ -1,0 +1,78 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #input (keyup)="buscarUsuario( input.value )" class="form-control" type="text" placeholder="Buscar usuarios">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col alert alert-warning text-center">
+        <strong>Cargando</strong>
+        <br>
+        <i class="fa fa-refresh fa-spin fa-2x"></i>
+        <br>
+        <small>Espere por favor</small>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Usuarios registrados (<small>{{ totalRegistros }}</small>)</h3>
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Auth</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let u of usuarios">
+                            <td>
+                                <img [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
+                            </td>
+                            <td>{{ u.nombre }}</td>
+                            <td>{{ u.email }}</td>
+                            <td>
+                                <select [(ngModel)]="u.rol" name="rol" class="form-control">
+
+                                    <option value="ADMIN_ROL">ADMIN_ROL</option>
+                                    <option value="USER_ROL">USER_ROL</option>
+                                    
+                                </select>
+                            </td>
+                            <td>
+                                <label *ngIf="u.google" class="label label-danger">Google</label>
+                                <label *ngIf="!u.google" class="label label-info">Normal</label>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
+                                <button *ngIf="_us.usuario._id != u._id" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button [disabled]="desde == 0" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button [disabled]="(desde + 5) >= totalRegistros" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+
+            </div>
+        </div>
+    </div>
+</div>

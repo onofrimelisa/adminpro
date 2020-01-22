@@ -11,7 +11,6 @@ export class LoginGuardService implements CanActivate{
   canActivate(): boolean{
 
     if (this._us.estaLoggeado()) {
-      console.log('paso por el guard');
       return true;
     }
 
