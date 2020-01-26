@@ -112,8 +112,8 @@ export class UsuariosComponent implements OnInit {
     this._us.actualizarUsuario( usuario )
       .subscribe( (resp) => {
         Swal.fire({
-           title: '',
-           text: resp.message,
+           title: resp.message,
+           text: '',
            icon: 'success',
            confirmButtonText: 'Ok'
         });

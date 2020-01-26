@@ -2,9 +2,15 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <input #input (keyup)="buscarMedico( input.value )" class="form-control" type="text" placeholder="Buscar medicos">
 
-                <input #input (keyup)="buscarUsuario( input.value )" class="form-control" type="text" placeholder="Buscar usuarios">
-
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn waves-effect waves-light btn-rounded btn-primary" [routerLink]="['/medico', 'nuevo']"><i class="fa fa-plus"></i> Agregar medico</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -27,7 +33,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h3 class="card-title">Usuarios registrados (<small>{{ totalRegistros }}</small>)</h3>
+                <h3 class="card-title">Médicos registrados (<small>{{ totalRegistros }}</small>)</h3>
 
                 <table class="table table-hover">
 
@@ -35,35 +41,25 @@
                         <tr>
                             <th>Imagen</th>
                             <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Auth</th>
+                            <th>Hospital</th>
                             <th>Operaciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr *ngFor="let u of usuarios">
+                        <tr *ngFor="let m of medicos">
                             <td>
-                                <img [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
-                            </td>
-                            <td>{{ u.nombre }}</td>
-                            <td>{{ u.email }}</td>
-                            <td>
-                                <select [(ngModel)]="u.rol" name="rol" class="form-control">
-
-                                    <option value="ADMIN_ROL">ADMIN_ROL</option>
-                                    <option value="USER_ROL">USER_ROL</option>
-                                    
-                                </select>
+                                <img [src]="m.img | image:'medico'" class="img-50 img-circle">
                             </td>
                             <td>
-                                <label *ngIf="u.google" class="label label-danger">Google</label>
-                                <label *ngIf="!u.google" class="label label-info">Normal</label>
+                                {{ m.nombre }}
                             </td>
                             <td>
-                                <button class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
-                                <button *ngIf="_us.usuario._id != u._id" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                {{ m.hospital.nombre }}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" [routerLink]="['/medico', m._id]"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-danger" (click)="borrarMedico( m )"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     </tbody>

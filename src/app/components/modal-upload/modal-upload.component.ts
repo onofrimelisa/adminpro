@@ -51,11 +51,17 @@ export class ModalUploadComponent implements OnInit {
   subirImagen(){
 
     this._sas.subirArchivo( this.imagenSubir, this._mus.tipo, this._mus.id )
-      .then( (resp)=>{
+      .then( (resp: any)=>{
         console.log(resp);
         
         this._mus.notificacion.emit( (resp) );
         this.cerrarModal();
+        Swal.fire({
+           title: resp.mensaje,
+           text: '',
+           icon: 'success',
+           confirmButtonText: 'Ok'
+        });
 
       })
       .catch( (err)=>{
