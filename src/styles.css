@@ -29,3 +29,10 @@
 .oculto {
     display: none;
 }
+
+
+/* header */
+
+.mostrar {
+    display: block;
+}

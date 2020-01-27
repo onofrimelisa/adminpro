@@ -29,6 +29,14 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <div class="row text-center">
+                        <div class="col-10 pr-0">
+                            <input #input (keyup.enter)="buscar( input.value )" placeholder="Búsqueda general" type="text" class="form-control">
+                        </div>
+                        <div class="col-2 pl-0 pt-1"><i class="fa fa-search"></i></div>
+                    </div>
+                </li>
 
 
             </ul>

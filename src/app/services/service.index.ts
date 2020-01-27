@@ -5,5 +5,6 @@ export { SidebarService } from "./shared/sidebar.service";
 export { UsuarioService } from "./usuario/usuario.service";
 export { HospitalService } from "./hospital/hospital.service";
 export { LoginGuardService } from "./guards/login-guard.service";
+export { AdminGuard } from "./guards/admin.guard";
 export { SubirArchivosService } from "./subir-archivos/subir-archivos.service";
 export { MedicoService } from "./medico/medico.service";

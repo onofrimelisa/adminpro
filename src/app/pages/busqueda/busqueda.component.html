@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Usuarios</h4>
+
+                <div *ngIf="usuarios.length == 0" class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                    <strong><i class="fa fa-info"></i></strong> No hay usuarios que coincidan con ese término de búsqueda.
+                </div>
+
+                <table class="table table-hover">
+
+                    <tbody>
+                        <tr *ngFor="let u of usuarios" [routerLink]="['/usuarios']" class="pointer">
+                            <td>
+                                <img class="img-50 img-circle" [src]="u.img | image" alt="">
+                            </td>
+                            <td>{{ u.nombre }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Médicos</h4>
+
+                <div *ngIf="medicos.length == 0" class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+                </button>
+                    <strong><i class="fa fa-info"></i></strong> No hay médicos que coincidan con ese término de búsqueda.
+                </div>
+
+                <table class="table table-hover">
+
+                    <tbody>
+                        <tr *ngFor="let m of medicos" [routerLink]="['/medico', m._id]" class="pointer">
+                            <td>
+                                <img class="img-50 img-circle" [src]="m.img | image:'medico'" alt="">
+                            </td>
+                            <td>{{ m.nombre }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Hospitales</h4>
+
+                <div *ngIf="hospitales.length == 0" class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+                </button>
+                    <strong><i class="fa fa-info"></i></strong> No hay hospitales que coincidan con ese término de búsqueda.
+                </div>
+
+                <table class="table table-hover">
+
+                    <tbody>
+                        <tr *ngFor="let h of hospitales" [routerLink]="['/hospitales']" class="pointer">
+                            <td>
+                                <img class="img-50 img-circle" [src]="h.img | image:'hospital'" alt="">
+                            </td>
+                            <td>{{ h.nombre }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

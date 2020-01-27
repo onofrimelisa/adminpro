@@ -12,6 +12,7 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
+  menu: any = [];
 
   constructor( public http: HttpClient, 
                 public router: Router, 
@@ -25,7 +26,10 @@ export class UsuarioService {
 
     return this.http.post( url, { token }).pipe(
       map( (resp: any)=>{
-        this.guardarStorage( resp.usuario, resp.token );
+        console.log(resp);
+        this.usuario = resp.usuario;
+        this.guardarStorage( resp.usuario, resp.token, resp.menu );
+        
         return resp;
       })
     );
@@ -45,7 +49,8 @@ export class UsuarioService {
     return this.http.post( url, usuario ).pipe(
       map( (resp: any)=>{
 
-        this.guardarStorage( resp.usuario, resp.token);
+        this.guardarStorage( resp.usuario, resp.token,resp.menu);
+        this.usuario = resp.usuario;
 
       })
     );
@@ -56,8 +61,10 @@ export class UsuarioService {
     // localStorage.clear(); esta no va porque te borra todo todo
     this.token = '';
     this.usuario = null;
+    this.menu = [];
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('menu');
 
     this.router.navigate(['/login']);  
   }
@@ -94,7 +101,7 @@ export class UsuarioService {
       map( (resp: any) =>{
 
         if ( usuario._id === this.usuario._id) {
-          this.guardarStorage( resp.usuario, this.token );
+          this.guardarStorage( resp.usuario, this.token, this.menu );
           
         }
 
@@ -115,7 +122,7 @@ export class UsuarioService {
         confirmButtonText: 'Ok'
         });
 
-        this.guardarStorage( this.usuario, this.token );
+        this.guardarStorage( this.usuario, this.token, this.menu );
         
       })
       .catch( (err) => console.log(err)
@@ -148,14 +155,16 @@ export class UsuarioService {
   //										OPERACIONES PRIVADAS
   // ###############################################################################
 
-  private guardarStorage( usuario: Usuario, token: string ){
+  private guardarStorage( usuario: Usuario, token: string, menu: any ){
 
     localStorage.setItem('id', usuario._id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem('menu', JSON.stringify(menu));
 
     this.usuario = usuario;
     this.token = token;
+    this.menu = menu;
     
   }
 
@@ -163,9 +172,11 @@ export class UsuarioService {
     if ( localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse(localStorage.getItem('usuario'))  ;
+      this.menu = JSON.parse(localStorage.getItem('menu'))  ;
     }else{
       this.token = '';
       this.usuario = null;
+      this.menu = [];
     }
   }
 
