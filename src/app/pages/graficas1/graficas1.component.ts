@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GraficasService } from '../../services/service.index';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-graficas1',
@@ -8,36 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class Graficas1Component implements OnInit {
 
 
-  graficos: any = {
-    'grafico1': {
-      'labels': ['Con Frijoles', 'Con Natilla', 'Con tocino'],
-      'data':  [24, 30, 46],
-      'type': 'doughnut',
-      'leyenda': 'El pan se come con'
-    },
-    'grafico2': {
-      'labels': ['Hombres', 'Mujeres'],
-      'data':  [4500, 6000],
-      'type': 'doughnut',
-      'leyenda': 'Entrevistados'
-    },
-    'grafico3': {
-      'labels': ['Si', 'No'],
-      'data':  [95, 5],
-      'type': 'doughnut',
-      'leyenda': '¿Le dan gases los frijoles?'
-    },
-    'grafico4': {
-      'labels': ['No', 'Si'],
-      'data':  [85, 15],
-      'type': 'doughnut',
-      'leyenda': '¿Le importa que le den gases?'
-    },
-  };
+  graficos: any;
+  cargando: boolean = false;
 
-  constructor() { }
+  constructor( public _gs: GraficasService, 
+               public _us: UsuarioService ) { 
+    this.cargando = true;
+
+    if (this._us.usuario.rol === 'ADMIN_ROL') {
+      this._gs.dashboardAdmin()
+      .subscribe( (resp: any)=>{
+        this.graficos = resp.graficos;
+        this.cargando = false;
+      
+      })
+    }else{
+      console.log('no es admin, falta hacer su dashboard');
+      
+    }
+  }
 
   ngOnInit() {
+    
+    
   }
 
 }

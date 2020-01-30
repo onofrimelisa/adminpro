@@ -11,7 +11,8 @@ import { SettingsService,
           AdminGuard,
           SubirArchivosService, 
           HospitalService, 
-          MedicoService
+          MedicoService, 
+          GraficasService
         } from "./service.index";
         
 
@@ -30,7 +31,8 @@ import { SettingsService,
     SubirArchivosService, 
     ModalUploadService, 
     HospitalService, 
-    MedicoService
+    MedicoService, 
+    GraficasService
   ],
   declarations: []
 })

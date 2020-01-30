@@ -16,9 +16,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const pagesRoutes: Routes = [
 
-    { path: 'dashboard', component: DashboardComponent,data: {titulo: 'Dashboard'} },
+    { path: 'dashboard', component: Graficas1Component, data: {titulo: 'Dashboard'} },
     { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress bar'} },
-    { path: 'graficas1', component: Graficas1Component, data: {titulo: 'Gráficas'} },
     { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'} },
     { path: 'observables', component: RxjsComponent, data: {titulo: 'Observables'} },
     { path: 'settings', component: AccountSettingsComponent, data: {titulo: 'Settings'} },
