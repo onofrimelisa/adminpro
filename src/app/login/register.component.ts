@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     this.forma = new FormGroup({
       nombre: new FormControl('', Validators.required ),
       email: new FormControl('', [Validators.required, Validators.email]),
+      fecha_nacimiento: new FormControl ('', [Validators.required]),
       password: new FormControl('', Validators.required),
       password2: new FormControl('', Validators.required),
       condiciones: new FormControl(false),
@@ -51,6 +52,16 @@ export class RegisterComponent implements OnInit {
   registrarUsuario(){
 
     if (this.forma.invalid) {
+      return;
+    }
+
+    if (!this.chequearEdad()) {
+      Swal.fire({
+         title: 'Error',
+         text: 'Debe ser mayor de 18 años para poder registrarse.',
+         icon: 'error',
+         confirmButtonText: 'Entendido'
+      });
       return;
     }
 
@@ -67,7 +78,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario( this.forma.value.nombre, this.forma.value.email, this.forma.value.password);
+    let usuario = new Usuario( this.forma.value.nombre, this.forma.value.email, this.forma.value.password, this.forma.value.fecha_nacimiento);
     
     this._us.crearUsuario( usuario )
       .subscribe( resp => this.router.navigate(['/login']), 
@@ -82,6 +93,28 @@ export class RegisterComponent implements OnInit {
                     });
                   }
                 )
+  }
+
+  // operaciones privadas
+  private chequearEdad(){
+    // Cálculo de las diferencias.
+
+    var fecha = new Date(this.forma.value.fecha_nacimiento);
+    console.log(fecha);
+    
+    var years = new Date().getFullYear() - fecha.getFullYear();
+    var months = new Date().getMonth() - fecha.getMonth() + 1;
+    var days = new Date().getDate() - fecha.getDate();
+
+    console.log(years);
+    console.log(months);
+    console.log(days);
+    if ((years > 18) || (years == 18 && months >= 0 && days >= 0)) {
+        return true;
+
+    }
+    return false;
+    
   }
 
 }

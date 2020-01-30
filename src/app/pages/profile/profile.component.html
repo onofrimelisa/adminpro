@@ -2,24 +2,25 @@
     <div class="col-lg-7">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">My Profile</h4>
+                <h4 class="card-title">Mi perfil</h4>
                 <h6 class="card-subtitle">{{ usuario.nombre }}</h6>
                 <form #f="ngForm" class="form p-t-20" ngNativeValidate (ngSubmit)="guardar( f.value )">
                     <div class="form-group">
-                        <label for="exampleInputuname">User Name</label>
+                        <label for="exampleInputuname">Nombre de usuario</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
                             <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control" id="exampleInputuname" placeholder="Username" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label for="exampleInputEmail1">Email</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
                             <input [disabled]="usuario.google" [ngModel]="usuario.email" name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
                         </div>
+                        <div *ngIf="usuario.google" class="text-danger muted">No puedes modificar tu mail por estar autenticado con Google.</div>
                     </div>
-                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar cambios</button>
                 </form>
             </div>
         </div>
@@ -29,8 +30,8 @@
     <div class="col-lg-5">
         <div class="card">
             <div class="card-body text-center">
-                <h4 class="card-title">Imagen del usuario</h4>
-                <h6 class="card-subtitle">username</h6>
+                <h4 class="card-title">Imagen de perfil</h4>
+                <h6 class="card-subtitle">{{ usuario.nombre }}</h6>
 
                 <img *ngIf="!imagenTemp" [src]="usuario.img | image" class="w150">
                 <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150">

@@ -3,11 +3,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-sm-5 col-md-6 col-lg-9">
                         <input #input (keyup)="buscarMedico( input.value )" class="form-control" type="text" placeholder="Buscar medicos">
 
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-sm-5 col-md-6 col-lg-3">
                         <button class="btn waves-effect waves-light btn-rounded btn-primary" [routerLink]="['/medico', 'nuevo']"><i class="fa fa-plus"></i> Agregar medico</button>
                     </div>
                 </div>
@@ -35,35 +35,55 @@
 
                 <h3 class="card-title">Médicos registrados (<small>{{ totalRegistros }}</small>)</h3>
 
-                <table class="table table-hover">
+                <div *ngIf="totalRegistros == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Nota: </strong> Aún no hay medicos cargados en el sistema.
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Hospital</th>
-                            <th>Operaciones</th>
-                        </tr>
-                    </thead>
+                <div *ngIf="medicos.length == 0 && totalRegistros != 0; else mostrarMedicos" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Ups: </strong> No hay ningún médico que coincida con el criterio de búsqueda.
+                </div>
 
-                    <tbody>
-                        <tr *ngFor="let m of medicos">
-                            <td>
-                                <img [src]="m.img | image:'medico'" class="img-50 img-circle">
-                            </td>
-                            <td>
-                                {{ m.nombre }}
-                            </td>
-                            <td>
-                                {{ m.hospital.nombre }}
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" [routerLink]="['/medico', m._id]"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-danger" (click)="borrarMedico( m )"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ng-template #mostrarMedicos>
+
+                    <table *ngIf="totalRegistros != 0" class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Hospital</th>
+                                <th>Operaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let m of medicos">
+                                <td>
+                                    <img [src]="m.img | image:'medico'" class="img-50 img-circle">
+                                </td>
+                                <td>
+                                    {{ m.nombre }}
+                                </td>
+                                <td>
+                                    {{ m.hospital.nombre }}
+                                </td>
+                                <td>
+                                    <button title="Editar pérfil de {{ m.nombre }}" class="btn btn-primary" [routerLink]="['/medico', m._id]"><i class="fa fa-edit"></i></button>
+                                    <button title="Borrar médico" class="btn btn-danger" (click)="borrarMedico( m )"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </ng-template>
 
                 <button *ngIf="desde != 0" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
                 <button *ngIf="!((desde + 5) >= totalRegistros)" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>

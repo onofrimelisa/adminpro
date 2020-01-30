@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
 
   constructor( public _us: UsuarioService ) { 
     this.usuario = this._us.usuario;
+    
+    
   }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class ProfileComponent implements OnInit {
     if ( !this.usuario.google ) {
       this.usuario.nombre = usuario.nombre;
       this.usuario.email = usuario.email;
+      this.usuario.fecha_nacimiento = usuario.fecha_nacimiento;
   
       this._us.actualizarUsuario( this.usuario )
         .subscribe( resp => {
@@ -37,6 +40,14 @@ export class ProfileComponent implements OnInit {
           confirmButtonText: 'Entendido'
           });
           
+        }, 
+        ( err: any )=> {
+          Swal.fire({
+             title: err.error.mensaje,
+             text: 'El email ingresado ya existe.',
+             icon: 'error',
+             confirmButtonText: 'Entendido'
+          });
         } );
       
     }

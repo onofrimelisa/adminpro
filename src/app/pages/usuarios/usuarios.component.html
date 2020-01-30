@@ -29,45 +29,65 @@
 
                 <h3 class="card-title">Usuarios registrados (<small>{{ totalRegistros }}</small>)</h3>
 
-                <table class="table table-hover">
+                <div *ngIf="totalRegistros == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Nota: </strong> Aún no hay usuarios cargados en el sistema.
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Auth</th>
-                            <th>Operaciones</th>
-                        </tr>
-                    </thead>
+                <div *ngIf="usuarios.length == 0 && totalRegistros != 0; else mostrarUsuarios" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Ups: </strong> No hay ningún usuario que coincida con el criterio de búsqueda.
+                </div>
 
-                    <tbody>
-                        <tr *ngFor="let u of usuarios">
-                            <td>
-                                <img [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
-                            </td>
-                            <td>{{ u.nombre }}</td>
-                            <td>{{ u.email }}</td>
-                            <td>
-                                <select [(ngModel)]="u.rol" name="rol" class="form-control">
+                <ng-template #mostrarUsuarios>
+
+                    <table class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Auth</th>
+                                <th>Operaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let u of usuarios">
+                                <td>
+                                    <img title="Actualizar imágen de usuario" [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
+                                </td>
+                                <td>{{ u.nombre }}</td>
+                                <td>{{ u.email }}</td>
+                                <td>
+                                    <select [(ngModel)]="u.rol" name="rol" class="form-control">
 
                                     <option value="ADMIN_ROL">ADMIN_ROL</option>
                                     <option value="USER_ROL">USER_ROL</option>
                                     
                                 </select>
-                            </td>
-                            <td>
-                                <label *ngIf="u.google" class="label label-danger">Google</label>
-                                <label *ngIf="!u.google" class="label label-info">Normal</label>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
-                                <button *ngIf="_us.usuario._id != u._id" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                                <td>
+                                    <label *ngIf="u.google" class="label label-danger">Google</label>
+                                    <label *ngIf="!u.google" class="label label-info">Normal</label>
+                                </td>
+                                <td>
+                                    <button title="Guardar usuario" class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
+                                    <button title="Borrar usuario" *ngIf="_us.usuario._id != u._id" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </ng-template>
 
                 <button *ngIf="desde != 0" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
                 <button *ngIf="!((desde + 5) >= totalRegistros)" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>

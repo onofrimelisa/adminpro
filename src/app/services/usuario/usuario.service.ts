@@ -47,8 +47,8 @@ export class UsuarioService {
     }
 
     return this.http.post( url, usuario ).pipe(
-      map( (resp: any)=>{
-
+      map( (resp: any)=>{        
+        
         this.guardarStorage( resp.usuario, resp.token,resp.menu);
         this.usuario = resp.usuario;
 

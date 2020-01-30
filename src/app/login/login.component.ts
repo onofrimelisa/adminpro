@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario(null, f.value.email, f.value.password);
+    let usuario = new Usuario(null, f.value.email, f.value.password, null);
 
     this._us.login( usuario, f.value.recuerdame )
       .subscribe( 

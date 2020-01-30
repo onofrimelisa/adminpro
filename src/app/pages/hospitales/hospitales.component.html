@@ -3,11 +3,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-sm-5 col-md-6 col-lg-9">
                         <input #input (keyup)="buscarHospital( input.value )" class="form-control" type="text" placeholder="Buscar hospitales">
 
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-sm-5 col-md-6 col-lg-3">
                         <button class="btn waves-effect waves-light btn-rounded btn-primary" (click)="agregarHospital()"><i class="fa fa-plus"></i> Agregar hospital</button>
                     </div>
                 </div>
@@ -35,31 +35,53 @@
 
                 <h3 class="card-title">Hospitales registrados (<small>{{ totalRegistros }}</small>)</h3>
 
-                <table class="table table-hover">
+                <div *ngIf="totalRegistros == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Nota: </strong> Aún no hay hospitales cargados en el sistema.
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Operaciones</th>
-                        </tr>
-                    </thead>
+                <div *ngIf="hospitales.length == 0 && totalRegistros != 0; else mostrarHospitales" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong> Ups: </strong> No hay ningún hospital que coincida con el criterio de búsqueda.
+                </div>
 
-                    <tbody>
-                        <tr *ngFor="let h of hospitales">
-                            <td>
-                                <img [src]="h.img | image:'hospital'" (click)="mostrarModal( h._id )" class="img-50 img-circle pointer">
-                            </td>
-                            <td>
-                                <input type="text" [(ngModel)]="h.nombre" class="form-control" placeholder="{{ h.nombre }}">
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" (click)="actualizarHospital( h )"><i class="fa fa-save"></i></button>
-                                <button class="btn btn-danger" (click)="borrarHospital( h )"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ng-template #mostrarHospitales>
+
+
+
+                    <table *ngIf="totalRegistros != 0" class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Operaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let h of hospitales">
+                                <td>
+                                    <img title="Actualizar imágen del hospital" [src]="h.img | image:'hospital'" (click)="mostrarModal( h._id )" class="img-50 img-circle pointer">
+                                </td>
+                                <td>
+                                    <input type="text" [(ngModel)]="h.nombre" class="form-control" placeholder="{{ h.nombre }}">
+                                </td>
+                                <td>
+                                    <button title="Guardar hospital" class="btn btn-primary" (click)="actualizarHospital( h )"><i class="fa fa-save"></i></button>
+                                    <button title="Borrar hospital" class="btn btn-danger" (click)="borrarHospital( h )"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </ng-template>
 
                 <button *ngIf="desde != 0" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
                 <button *ngIf="!((desde + 5) >= totalRegistros)" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>

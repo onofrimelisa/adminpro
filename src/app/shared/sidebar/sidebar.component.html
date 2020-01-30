@@ -10,11 +10,9 @@
                 <li class="user-profile">
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img [src]="usuario.img | image" alt="user" /><span class="hide-menu">{{ usuario.nombre }} </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a routerLink="/profile" routerLinkActive="active">My Profile </a></li>
-                        <li><a href="javascript:void()">My Balance</a></li>
-                        <li><a href="javascript:void()">Inbox</a></li>
-                        <li><a [routerLink]="['/settings']" routerLinkActive="active">Account Settings</a></li>
-                        <li><a class="pointer" (click)="_us.logout()">Logout</a></li>
+                        <li><a routerLink="/profile" routerLinkActive="active">Mi perfil </a></li>
+                        <li><a [routerLink]="['/settings']" routerLinkActive="active">Ajustes</a></li>
+                        <li><a class="pointer" (click)="_us.logout()">Cerrar sesión</a></li>
                     </ul>
                 </li>
                 <li class="nav-devider"></li>
