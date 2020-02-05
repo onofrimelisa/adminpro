@@ -9,7 +9,7 @@ export class GraficasService {
   constructor( public _us: UsuarioService, 
               public http: HttpClient ) { }
 
-  dashboardAdmin(){
+  getDashboard(){
     let url = URL_SERVICIOS + '/usuario/dashboard/' + this._us.usuario._id;
     url += '?token=' + this._us.token;
 

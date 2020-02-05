@@ -78,7 +78,7 @@ export class HospitalesComponent implements OnInit {
   borrarHospital( h: Hospital ){
     Swal.fire({
        title: '¿Estas seguro?',
-       text: 'Se eliminará el hospital: ' + h.nombre,
+       text: 'Se eliminará el hospital: ' + h.nombre + ' y todos los médicos asociados al mismo.',
        icon: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#3085d6',
@@ -92,7 +92,7 @@ export class HospitalesComponent implements OnInit {
           .subscribe( (resp: any)=> {
             Swal.fire({
                title: resp.message,
-               text: '',
+               text: 'También se eliminaron sus médicos asociados.',
                icon: 'success',
                confirmButtonText: 'Ok'
             });

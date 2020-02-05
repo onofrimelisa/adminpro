@@ -17,17 +17,12 @@ export class Graficas1Component implements OnInit {
                public _us: UsuarioService ) { 
     this.cargando = true;
 
-    if (this._us.usuario.rol === 'ADMIN_ROL') {
-      this._gs.dashboardAdmin()
+      this._gs.getDashboard()
       .subscribe( (resp: any)=>{
         this.graficos = resp.graficos;
         this.cargando = false;
       
       })
-    }else{
-      console.log('no es admin, falta hacer su dashboard');
-      
-    }
   }
 
   ngOnInit() {

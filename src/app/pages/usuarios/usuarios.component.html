@@ -81,7 +81,7 @@
                                 </td>
                                 <td>
                                     <button title="Guardar usuario" class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
-                                    <button title="Borrar usuario" *ngIf="_us.usuario._id != u._id" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <button title="Borrar usuario" *ngIf="_us.usuario._id != u._id && _us.usuario.rol == 'ADMIN_ROL'" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>

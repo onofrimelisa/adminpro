@@ -1,10 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { PromesasComponent } from './promesas/promesas.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
@@ -17,9 +13,6 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 const pagesRoutes: Routes = [
 
     { path: 'dashboard', component: Graficas1Component, data: {titulo: 'Dashboard'} },
-    { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress bar'} },
-    { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'} },
-    { path: 'observables', component: RxjsComponent, data: {titulo: 'Observables'} },
     { path: 'settings', component: AccountSettingsComponent, data: {titulo: 'Settings'} },
     { path: 'profile', component: ProfileComponent, data: {titulo: 'Profile'} },
     { path: 'busqueda/:termino', component: BusquedaComponent, data: {titulo: 'Buscador'} },
