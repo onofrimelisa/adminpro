@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Hospital } from '../../../../Material-de-la-tarea-Seccio-n-16/hospital.model';
+import { Hospital } from '../../models/hospital.model';
 import { HospitalService } from '../../services/hospital/hospital.service';
 import { Medico } from '../../models/medico.model';
 import { MedicoService } from '../../services/service.index';
@@ -20,7 +20,7 @@ export class MedicoComponent implements OnInit {
 
   hospitales: Hospital[] = [];
   medico: Medico = new Medico('', this._us.usuario._id, '');
-  hospital: Hospital = new Hospital('');
+  hospital: Hospital = new Hospital('', null);
 
   constructor( public _hs: HospitalService, 
               public _ms: MedicoService, 

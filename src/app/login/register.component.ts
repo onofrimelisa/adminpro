@@ -43,13 +43,16 @@ export class RegisterComponent implements OnInit {
       nombre: new FormControl('', Validators.required ),
       email: new FormControl('', [Validators.required, Validators.email]),
       fecha_nacimiento: new FormControl ('', [Validators.required]),
-      password: new FormControl('', Validators.required),
-      password2: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password2: new FormControl('', [Validators.required]),
       condiciones: new FormControl(false),
     }, { validators: this.sonIguales('password', 'password2')})
   }
 
   registrarUsuario(){
+
+    console.log(this.forma);
+    
 
     if (this.forma.invalid) {
       return;

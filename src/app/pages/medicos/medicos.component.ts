@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Medico } from '../../../../Material-de-la-tarea-Seccio-n-16/medico.model';
+import { Medico } from '../../models/medico.model';
 import { MedicoService } from '../../services/service.index';
 
 import Swal from 'sweetalert2';
