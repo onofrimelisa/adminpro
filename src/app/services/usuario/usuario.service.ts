@@ -114,6 +114,7 @@ export class UsuarioService {
   cambiarImagen( archivo: File, id: string ){
     this._sas.subirArchivo(archivo, 'usuarios', id)
       .then( (resp: any) =>{
+        this._sas.notificacion.emit(resp);
         this.usuario.img = resp.usuario.img;
         Swal.fire({
         title: resp.mensaje,
@@ -149,6 +150,12 @@ export class UsuarioService {
     url += '?token=' + this.token;
 
     return this.http.delete(url);
+  }
+
+  getEntidades(){
+    let url = URL_SERVICIOS + '/entidades';
+    url += '?token=' + this.token;
+    return this.http.get(url);
   }
 
   // ###############################################################################

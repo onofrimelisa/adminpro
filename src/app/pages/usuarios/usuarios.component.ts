@@ -122,6 +122,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   mostrarModal( id:string ){
+    
     this._mus.mostrarModal( 'usuarios', id);
   }
 

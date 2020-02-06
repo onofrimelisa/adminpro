@@ -1,7 +1,7 @@
 <!-- ============================================================== -->
 <!-- Topbar header - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<header class="topbar">
+<header *ngIf="!cargando" class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <!-- ============================================================== -->
         <!-- Logo -->
@@ -50,38 +50,39 @@
                     <div class="dropdown-menu mailbox dropdown-menu-right animated fadeIn" aria-labelledby="2">
                         <ul>
                             <li>
-                                <div class="drop-title">You have 4 new messages</div>
+                                <div class="drop-title">Últimas entidades cargadas</div>
                             </li>
                             <li>
                                 <div class="message-center">
                                     <!-- Message -->
                                     <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="user-img"> <img [src]="_usuario.img | image" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                                            <h5>{{ _usuario.nombre }}</h5> <span class="mail-desc">{{ usuario.email }}</span> <span class="time">Usuario del sistema</span> </div>
+                                    </a>
+                                    <!-- Message -->
+                                    <a [routerLink]="['/medico', medico._id]">
+                                        <div class="user-img"> <img [src]="medico.img | image:'medico'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="mail-contnet">
+                                            <h5>{{ medico.nombre }}</h5> <span class="time">Médico</span> </div>
                                     </a>
                                     <!-- Message -->
                                     <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                        <div class="user-img"> <img [src]="hospital.img | image:'hospital'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
-                                            <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                                            <h5>{{ hospital.nombre }}</h5><span class="time">Hospital</span> </div>
                                     </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="user-img"> <img src="assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                    </a>
+
                                 </div>
                             </li>
                             <li>
-                                <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                <a class="nav-link text-center" [routerLink]="['/usuarios']"> <strong>Ver todos los usuarios</strong> <i class="fa fa-angle-right"></i> </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-center" [routerLink]="['/medicos']"> <strong>Ver todos los médicos</strong> <i class="fa fa-angle-right"></i> </a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-center" [routerLink]="['/hospitales']"> <strong>Ver todos los hospitales</strong> <i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
                     </div>

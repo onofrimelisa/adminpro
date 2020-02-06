@@ -14,7 +14,7 @@ const pagesRoutes: Routes = [
 
     { path: 'dashboard', component: Graficas1Component, data: {titulo: 'Dashboard'} },
     { path: 'settings', component: AccountSettingsComponent, data: {titulo: 'Settings'} },
-    { path: 'profile', component: ProfileComponent, data: {titulo: 'Profile'} },
+    { path: 'profile', component: ProfileComponent, data: {titulo: 'Perfil'} },
     { path: 'busqueda/:termino', component: BusquedaComponent, data: {titulo: 'Buscador'} },
     { path: 'usuarios', component: UsuariosComponent,data: {titulo: 'Mantenimiento de usuarios'} },
     { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Mantenimiento de hospitales'} },

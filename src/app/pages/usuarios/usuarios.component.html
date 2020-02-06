@@ -56,19 +56,24 @@
                                 <th>Email</th>
                                 <th>Rol</th>
                                 <th>Auth</th>
-                                <th>Operaciones</th>
+                                <th *ngIf="_us.usuario.rol == 'ADMIN_ROL'">Operaciones</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr *ngFor="let u of usuarios">
                                 <td>
-                                    <img title="Actualizar imágen de usuario" [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
+                                    <img *ngIf="_us.usuario.rol == 'ADMIN_ROL'; else soloFoto" title="Actualizar imágen de usuario" [src]="u.img | image" (click)="mostrarModal( u._id )" class="img-50 img-circle pointer">
+                                    <ng-template #soloFoto>
+                                        <img title="Actualizar imágen de usuario" [src]="u.img | image" class="img-50 img-circle">
+
+                                    </ng-template>
+
                                 </td>
                                 <td>{{ u.nombre }}</td>
                                 <td>{{ u.email }}</td>
                                 <td>
-                                    <select [(ngModel)]="u.rol" name="rol" class="form-control">
+                                    <select [disabled]="_us.usuario.rol == 'USER_ROL'" [(ngModel)]="u.rol" name="rol" class="form-control">
 
                                     <option value="ADMIN_ROL">ADMIN_ROL</option>
                                     <option value="USER_ROL">USER_ROL</option>
@@ -79,7 +84,7 @@
                                     <label *ngIf="u.google" class="label label-danger">Google</label>
                                     <label *ngIf="!u.google" class="label label-info">Normal</label>
                                 </td>
-                                <td>
+                                <td *ngIf="_us.usuario.rol == 'ADMIN_ROL'">
                                     <button title="Guardar usuario" class="btn btn-primary" (click)="guardarUsuario( u )"><i class="fa fa-save"></i></button>
                                     <button title="Borrar usuario" *ngIf="_us.usuario._id != u._id && _us.usuario.rol == 'ADMIN_ROL'" (click)="borrarUsuario( u )" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>

@@ -1,8 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { URL_SERVICIOS } from '../../config/config';
 
 @Injectable()
 export class SubirArchivosService {
+
+  // notifica que ya se subio la imagen
+  public notificacion = new EventEmitter<any>();
 
   constructor() { }
 
