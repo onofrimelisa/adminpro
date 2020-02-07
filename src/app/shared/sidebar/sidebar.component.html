@@ -27,14 +27,19 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <div class="row text-center">
-                        <div class="col-10 pr-0">
-                            <input #input (keyup.enter)="buscar( input.value )" placeholder="Búsqueda general" type="text" class="form-control">
-                        </div>
-                        <div class="col-2 pl-0 pt-1"><i class="fa fa-search"></i></div>
-                    </div>
-                </li>
+                <div class="row text-center">
+                    <li>
+                        <a tabindex="0" data-toggle="popover" data-trigger="focus" title="Búsqueda general" data-content="Encuentra médicos, usuarios y hospitales.">
+                            <div class="row text-center">
+                                <div class="col-10 pr-0">
+                                    <input #input (keyup.enter)="buscar( input.value )" placeholder="Búsqueda" type="text" class="form-control">
+                                </div>
+                                <div class="col-2 pl-0 pt-1"><i class="fa fa-search"></i></div>
+                            </div>
+                        </a>
+
+                    </li>
+                </div>
 
 
             </ul>

@@ -23,6 +23,7 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { HospitalComponent } from './hospitales/hospital.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
-        BusquedaComponent
+        BusquedaComponent,
+        HospitalComponent
     ],
     exports: [
         Graficas1Component

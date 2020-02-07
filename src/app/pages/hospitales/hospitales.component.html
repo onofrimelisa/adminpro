@@ -66,7 +66,7 @@
                         </thead>
 
                         <tbody>
-                            <tr *ngFor="let h of hospitales">
+                            <tr *ngFor="let h of hospitales" (click)="router.navigate(['/hospital', h._id])" class="pointer">
                                 <td>
                                     <img title="Actualizar imágen del hospital" [src]="h.img | image:'hospital'" (click)="mostrarModal( h._id )" class="img-50 img-circle pointer">
                                 </td>
@@ -74,6 +74,7 @@
                                     <input type="text" [(ngModel)]="h.nombre" class="form-control" placeholder="{{ h.nombre }}">
                                 </td>
                                 <td>
+                                    <button title="Ver hospital" class="btn btn-primary" [routerLink]="['/hospital', h._id]"><i class="fa fa-info"></i></button>
                                     <button title="Guardar hospital" class="btn btn-primary" (click)="actualizarHospital( h )"><i class="fa fa-save"></i></button>
                                     <button title="Borrar hospital" class="btn btn-danger" (click)="borrarHospital( h )"><i class="fa fa-trash"></i></button>
                                 </td>

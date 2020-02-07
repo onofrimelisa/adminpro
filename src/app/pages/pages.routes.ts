@@ -7,6 +7,7 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { HospitalComponent } from './hospitales/hospital.component';
 
 
 
@@ -18,6 +19,7 @@ const pagesRoutes: Routes = [
     { path: 'busqueda/:termino', component: BusquedaComponent, data: {titulo: 'Buscador'} },
     { path: 'usuarios', component: UsuariosComponent,data: {titulo: 'Mantenimiento de usuarios'} },
     { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Mantenimiento de hospitales'} },
+    { path: 'hospital/:id', component: HospitalComponent, data: {titulo: 'Datos del hospital'} },
     { path: 'medicos', component: MedicosComponent, data: {titulo: 'Mantenimiento de médicos'} },
     { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Actualizar médico'} },
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' }

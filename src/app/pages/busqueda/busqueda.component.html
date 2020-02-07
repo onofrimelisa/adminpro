@@ -75,7 +75,7 @@
                 <table class="table table-hover">
 
                     <tbody>
-                        <tr *ngFor="let h of hospitales" [routerLink]="['/hospitales']" class="pointer">
+                        <tr *ngFor="let h of hospitales" [routerLink]="['/hospital', h._id]" class="pointer">
                             <td>
                                 <img class="img-50 img-circle" [src]="h.img | image:'hospital'" alt="">
                             </td>

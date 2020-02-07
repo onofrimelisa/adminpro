@@ -67,7 +67,7 @@
                                             <h5>{{ medico.nombre }}</h5> <span class="time">Médico</span> </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a [routerLink]="['/hospital', hospital._id]">
                                         <div class="user-img"> <img [src]="hospital.img | image:'hospital'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
                                             <h5>{{ hospital.nombre }}</h5><span class="time">Hospital</span> </div>

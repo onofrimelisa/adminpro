@@ -3,6 +3,7 @@ import { Hospital } from "../../models/hospital.model";
 import { HospitalService } from '../../services/service.index';
 import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { Router } from '@angular/router';
 
 declare function init_plugins();
 
@@ -20,7 +21,8 @@ export class HospitalesComponent implements OnInit {
   hospital: Hospital;
 
   constructor( public _hs: HospitalService, 
-                public _mus: ModalUploadService ) { }
+                public _mus: ModalUploadService, 
+                public router: Router ) { }
 
   ngOnInit() {
     init_plugins();

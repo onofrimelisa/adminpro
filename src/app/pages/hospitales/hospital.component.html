@@ -1,0 +1,35 @@
+<div *ngIf="!cargando" class="row animated fadeIn">
+    <div class="row">
+        <div class="card card-body col-sm-12 col-md-12 col-lg-6 ml-auto mr-auto">
+            <h3 class="box-title m-b-0">{{ hospital.nombre }}</h3>
+            <p class="text-muted m-b-30 font-13"> Información </p>
+            <div class="text-center">
+                <img [src]="hospital.img | image:'hospital'" title="Imágen del hospital" class="pt-3 rounded img-fluid">
+            </div>
+
+            <p class="text-muted m-b-30 m-t-30 font-13"> Médicos asignados </p>
+        </div>
+        <div class="card card-body col-sm-12 col-md-12 col-lg-5 ml-auto mr-auto">
+            <h3 class="box-title m-b-0">Usuario que lo ingresó al sistema</h3>
+            <p class="text-muted m-b-30 font-13"> Información del usuario </p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nombre: {{ hospital.usuario.nombre }}</li>
+                <li class="list-group-item">Email: {{ hospital.usuario.email }}</li>
+                <li class="list-group-item">Rol:
+                    <span *ngIf="hospital.usuario.rol == 'ADMIN_ROL'" class="badge badge-danger">ADMINISTRADOR</span>
+                    <span *ngIf="hospital.usuario.rol == 'USER_ROL'" class="badge badge-success">USUARIO</span>
+                </li>
+            </ul>
+
+            <div class="text-center">
+                <img [src]="hospital.usuario.img | image" title="Imágen del usuario" class="pt-3 rounded img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-5 col-md-6 col-lg-3">
+        <button class="btn waves-effect waves-light btn-rounded btn-primary" [routerLink]="['/hospitales']"><i class="fa fa-undo"></i> Volver al listado</button>
+    </div>
+
+</div>
