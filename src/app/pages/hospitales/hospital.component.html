@@ -7,7 +7,13 @@
                 <img [src]="hospital.img | image:'hospital'" title="Imágen del hospital" class="pt-3 rounded img-fluid">
             </div>
 
-            <p class="text-muted m-b-30 m-t-30 font-13"> Médicos asignados </p>
+            <p class="text-muted m-t-30 font-13"> Médicos asignados: </p>
+            <div class="card">
+                <div class="card-body">
+
+                    <app-grafico-dona [chartLabels]="graficos.medicos.labels" [chartData]="graficos.medicos.data" chartType="doughnut"></app-grafico-dona>
+                </div>
+            </div>
         </div>
         <div class="card card-body col-sm-12 col-md-12 col-lg-5 ml-auto mr-auto">
             <h3 class="box-title m-b-0">Usuario que lo ingresó al sistema</h3>

@@ -14,6 +14,7 @@ export class HospitalComponent implements OnInit {
   cargando: boolean = false;
   hospital: Hospital;
   medicos: number;
+  graficos: any;
 
   constructor( public _hs: HospitalService, 
                 public activatedRoute: ActivatedRoute) { }
@@ -30,7 +31,8 @@ export class HospitalComponent implements OnInit {
     this._hs.obtenerHospital( id )
       .subscribe( (resp: any)=> {
         this.hospital = resp.hospital;
-        this.medicos = resp.medicos
+        this.medicos = resp.medicos;
+        this.graficos = resp.graficos;
         this.cargando = false;
         console.log(resp);
         
