@@ -1,4 +1,4 @@
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="!cargando">
     <div class="col-sm-12 col-md-6">
         <div class="card card-body">
             <h3 class="box-title m-b-0">Médico {{ medico.nombre }}</h3>
@@ -19,28 +19,51 @@
                         </div>
                         <button [disabled]="(f.form.status == 'INVALID')" title="Actualizar médico" type="submit" class="btn btn-success waves-effect waves-light m-r-10">
                           <i class="fa fa-save"></i>
-                          Guardar</button>
-                        <button routerLink="/medicos" type="submit" title="Volver al listado" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                          Guardar cambios</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-6 col-md-3" *ngIf="medico._id">
+    <div class="col-sm-12 col-md-6" *ngIf="medico._id" style="display: flex">
         <div class="card card-body">
 
-            <h3 class="box-title m-b-0">Imágen</h3>
-            <img (click)="cambiarFoto()" [src]="medico.img | image:'medico'" title="Actualizar imágen del médico" class="pt-3 rounded img-fluid pointer">
+            <h3 class="box-title m-b-0">Actualizar su imágen</h3>
+            <img (click)="cambiarFoto()" [src]="medico.img | image:'medico'" title="Actualizar imágen del médico" class="pt-3 foto-medico rounded img-fluid pointer">
         </div>
     </div>
 
-    <div class="col-sm-6 col-md-3">
-        <div class="card card-body">
+</div>
 
-            <h3 class="box-title m-b-0">Hospital</h3>
-            <img [src]="hospital.img | image:'hospital'" alt="" class="pt-3 rounded img-fluid">
+<div class="row" *ngIf="!cargando">
+    <div class="col card card-body">
+
+        <h3 class="box-title m-b-0">Hospital asignado:</h3>
+
+        <div class="row">
+            <div class="col-6">
+                <ul class="list-group list-group-flush pt-4">
+                    <li class="list-group-item">Nombre: {{ hospital.nombre }}</li>
+                    <li class="list-group-item">Creador: {{ hospital.usuario.nombre }}
+                        <span *ngIf="hospital.usuario.rol == 'ADMIN_ROL'" class="badge badge-danger"> ADMINISTRADOR</span>
+                        <span *ngIf="hospital.usuario.rol == 'USER_ROL'" class="badge badge-success"> USUARIO</span>
+                        <br><br><span><button class="btn waves-effect waves-light btn-rounded btn-secondary" [routerLink]="['/usuarios']" title="Ver perfil del usuario creador"><i class="fa fa-user"></i> Ver su perfil</button></span><span class="pl-2"><button class="pl-2 btn waves-effect waves-light btn-rounded btn-secondary" [routerLink]="['/hospital', hospital._id]" title="Ver hospital"><i class="fa fa-home"></i> Ver hospital</button></span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-6 text-center">
+                <img [src]="hospital.img | image:'hospital'" alt="" class="pt-3 rounded img-fluid m-auto">
+
+            </div>
         </div>
+
     </div>
+</div>
+
+
+<div class="container text-center">
+    <button class="btn waves-effect waves-light btn-rounded btn-primary" [routerLink]="['/medicos']"><i class="fa fa-undo"></i> Volver al listado</button>
 
 </div>

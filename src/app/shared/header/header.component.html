@@ -31,8 +31,8 @@
             <!-- ============================================================== -->
             <ul class="navbar-nav mr-auto">
                 <!-- This is  -->
-                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <!-- <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li> -->
                 <li class="nav-item hidden-sm-down"></li>
             </ul>
             <!-- ============================================================== -->
@@ -56,19 +56,19 @@
                                 <div class="message-center">
                                     <!-- Message -->
                                     <a href="#">
-                                        <div class="user-img"> <img [src]="_usuario.img | image" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="user-img"> <img [src]="_usuario.img | image" alt="user" class="img-40 img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
                                             <h5>{{ _usuario.nombre }}</h5> <span class="mail-desc">{{ usuario.email }}</span> <span class="time">Usuario del sistema</span> </div>
                                     </a>
                                     <!-- Message -->
                                     <a [routerLink]="['/medico', medico._id]">
-                                        <div class="user-img"> <img [src]="medico.img | image:'medico'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="user-img"> <img [src]="medico.img | image:'medico'" alt="user" class="img-40 img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
                                             <h5>{{ medico.nombre }}</h5> <span class="time">Médico</span> </div>
                                     </a>
                                     <!-- Message -->
                                     <a [routerLink]="['/hospital', hospital._id]">
-                                        <div class="user-img"> <img [src]="hospital.img | image:'hospital'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="user-img"> <img [src]="hospital.img | image:'hospital'" alt="user" class="img-40 img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
                                             <h5>{{ hospital.nombre }}</h5><span class="time">Hospital</span> </div>
                                     </a>

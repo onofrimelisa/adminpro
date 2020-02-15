@@ -13,7 +13,19 @@
 }
 
 .img-50 {
-    width: 50px;
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.img-40 {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.foto-medico {
+    margin: auto;
+    width: 200px !important;
+    height: 200px !important;
 }
 
 .fondo_negro {

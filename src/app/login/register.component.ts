@@ -50,8 +50,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarUsuario(){
-
-    console.log(this.forma);
     
 
     if (this.forma.invalid) {

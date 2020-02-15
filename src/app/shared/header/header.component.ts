@@ -4,6 +4,8 @@ import { Usuario } from '../../models/usuario.model';
 import { Medico } from '../../models/medico.model';
 import { Hospital } from '../../models/hospital.model';
 import { SubirArchivosService } from '../../services/service.index';
+import { MedicoService } from '../../services/medico/medico.service';
+import { HospitalService } from '../../services/hospital/hospital.service';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +21,28 @@ export class HeaderComponent implements OnInit {
   cargando: boolean = false;
 
   constructor( public _us: UsuarioService, 
-              public _sas: SubirArchivosService ) { }
+              public _sas: SubirArchivosService, 
+              public _ms: MedicoService, 
+              public _hs: HospitalService ) { }
 
   ngOnInit() {
     this.usuario = this._us.usuario;
     this.cargarEntidades();
 
+    // se suscribe para ver el cambio cuando se actualiza una foto
     this._sas.notificacion.subscribe( (resp)=>{
+      this.cargarEntidades();
+      
+    });
+
+    // se suscribe para ver el cambio cuando se crea un médico
+    this._ms.notificacion.subscribe( (resp)=>{
+      this.cargarEntidades();
+      
+    });
+
+    // se suscribe para ver el cambio cuando se crea un hospital
+    this._hs.notificacion.subscribe( (resp)=>{
       this.cargarEntidades();
       
     })

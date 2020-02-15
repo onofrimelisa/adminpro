@@ -147,6 +147,7 @@ export class HospitalesComponent implements OnInit {
             confirmButtonText: 'Ok'
          });
          this.cargarHospitales();
+         this._hs.notificacion.emit(resp);
        });
        
           
