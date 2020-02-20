@@ -11,7 +11,7 @@ export class SettingsService {
 
   ajustes: Ajustes = {
     temaUrl: 'assets/css/colors/default.css',
-    tema: 'default'
+    tema: 'red'
   };
 
   constructor( @Inject(DOCUMENT) private _document ) { 

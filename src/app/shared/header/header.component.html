@@ -55,7 +55,7 @@
                             <li>
                                 <div class="message-center">
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a>
                                         <div class="user-img"> <img [src]="_usuario.img | image" alt="user" class="img-40 img-circle"> <span class="profile-status online pull-right"></span> </div>
                                         <div class="mail-contnet">
                                             <h5>{{ _usuario.nombre }}</h5> <span class="mail-desc">{{ usuario.email }}</span> <span class="time">Usuario del sistema</span> </div>
@@ -102,12 +102,12 @@
                 <!-- Profile -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img [src]="usuario.img | image" alt="user" class="profile-pic" /></a>
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img [src]="usuario.img | image" alt="user" class="profile-pic img-40" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img [src]="usuario.img | image" alt="user"></div>
+                                    <div class="u-img img-50"><img [src]="usuario.img | image" alt="user"></div>
                                     <div class="u-text">
                                         <h4>{{ usuario.nombre }}</h4>
                                         <p class="text-muted">{{ usuario.email }}</p><a routerLink="/profile" routerLinkActive="active" class="btn btn-rounded btn-danger btn-sm">Ver mi perfil</a></div>
